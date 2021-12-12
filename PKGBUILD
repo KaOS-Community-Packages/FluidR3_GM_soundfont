@@ -1,17 +1,18 @@
 pkgname=FluidR3_GM_soundfont
-pkgver=2
-pkgrel=2
+pkgver=3.1
+pkgrel=1
 pkgdesc="Release 3 of Frank Wen's pro-quality GM/GS soundfont"
 arch=('x86_64')
-url="http://www.musescore.org/en/handbook/soundfont" "www.hammersound.com"
-# Fluid R3, Copyright 2000-2002 Frank Wen.  All Rights Reserved.  Fluid.sf@gte.net
-# Released to Public Domain on 12/25/01
-license=('custom:Public Domain')
-source=("http://www.musescore.org/download/fluid-soundfont.tar.gz")
-md5sums=('bc0df95c7f3c33a82e606a5f4e601594')
+url='http://www.hammersound.net'
+license=('custom:MIT')
+source=("http://cdn-fastly.deb.debian.org/debian/pool/main/f/fluid-soundfont/fluid-soundfont_${pkgver}.orig.tar.gz")
+md5sums=('189bbdf70221018cbda536984b105dfa')
 
 package() {
-  install -Dm0644 "$srcdir/FluidR3 GM2-2.SF2" "$pkgdir/usr/share/soundfonts/FluidR3_GM2-2.sf2"
-  install -Dm0644 "$srcdir/Fluid R3- Readme.doc" "$pkgdir/usr/share/doc/fluid-soundfont/Fluid R3- Readme.doc"
-  install -Dm0644 "$srcdir/Changelog.txt" "$pkgdir/usr/share/doc/fluid-soundfont/Changelog.txt"
+	local src="${srcdir}/fluid-soundfont-${pkgver}"
+	local dest="${pkgdir}/usr/share/soundfonts"
+	install -Dm0644 "${src}/FluidR3_GM.sf2" "${dest}/FluidR3_GM.sf2"
+	install -Dm0644 "${src}/FluidR3_GS.sf2" "${dest}/FluidR3_GS.sf2"
+	install -Dm0644 "${src}/README" "${pkgdir}/usr/share/doc/soundfont-fluid/README"
+	install -Dm0644 "${src}/COPYING" "${pkgdir}/usr/share/licenses/soundfont-fluid/COPYING"
 }
